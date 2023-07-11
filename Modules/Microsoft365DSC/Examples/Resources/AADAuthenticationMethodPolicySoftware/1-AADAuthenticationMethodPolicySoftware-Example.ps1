@@ -5,38 +5,38 @@ It is not meant to use as a production baseline.
 
 Configuration Example
 {
-    Import-DscResource -ModuleName Microsoft365DSC
+#     Import-DscResource -ModuleName Microsoft365DSC
 
-    Node localhost
+#     Node granite
     {
-        AADAuthenticationMethodPolicySoftware "AADAuthenticationMethodPolicySoftware-SoftwareOath"
+#         AADAuthenticationMethodPolicySoftware "AADAuthenticationMethodPolicySoftware-SoftwareOath"
         {
-            ApplicationId         = $ConfigurationData.NonNodeData.ApplicationId;
-            CertificateThumbprint = $ConfigurationData.NonNodeData.CertificateThumbprint;
-            Ensure                = "Present";
-            ExcludeTargets        = @(
-                MSFT_AADAuthenticationMethodPolicySoftwareExcludeTarget{
-                    Id = 'fakegroup1'
-                    TargetType = 'group'
+#             ApplicationId         = $ConfigurationData.NonNodeData.ApplicationId;
+#             CertificateThumbprint = $ConfigurationData.NonNodeData.CertificateThumbprint;
+#             Ensure                = "Present";
+#             ExcludeTargets        = @(
+#                 MSFT_AADAuthenticationMethodPolicySoftwareExcludeTarget{
+#                     Id = 'group1'
+#                     TargetType = 'group'
                 }
-                MSFT_AADAuthenticationMethodPolicySoftwareExcludeTarget{
-                    Id = 'fakegroup2'
-                    TargetType = 'group'
-                }
-            );
-            Id                    = "SoftwareOath";
-            IncludeTargets        = @(
-                MSFT_AADAuthenticationMethodPolicySoftwareIncludeTarget{
-                    Id = 'fakegroup3'
-                    TargetType = 'group'
-                }
-                MSFT_AADAuthenticationMethodPolicySoftwareIncludeTarget{
-                    Id = 'fakegroup4'
-                    TargetType = 'group'
+#                 MSFT_AADAuthenticationMethodPolicySoftwareExcludeTarget{
+#                     Id = 'group2'
+#                     TargetType = 'group'
                 }
             );
-            State                 = "enabled";
-            TenantId              = $ConfigurationData.NonNodeData.TenantId;
+#             Id                    = "SoftwareOath";
+#             IncludeTargets        = @(
+#                 MSFT_AADAuthenticationMethodPolicySoftwareIncludeTarget{
+#                     Id = 'fakegroup3'
+#                     TargetType = 'group'
+                }
+#                 MSFT_AADAuthenticationMethodPolicySoftwareIncludeTarget{
+#                     Id = 'group4'
+#                     TargetType = 'group'
+                }
+            );
+#             State                 = "enabled";
+#             TenantId              = $ConfigurationData.NodeData.TenantId;
         }
     }
 }
